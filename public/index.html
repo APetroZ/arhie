@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <link rel="preload" as="image" href="./hero.jpg">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -104,7 +105,7 @@
       position:absolute; inset:0;
       background:
         linear-gradient(90deg, rgba(10,14,20,.92) 0%, rgba(10,14,20,.70) 40%, rgba(10,14,20,.40) 65%, rgba(10,14,20,.78) 100%),
-        url("./%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B96.webp") center/cover no-repeat;
+        url("./hero.jpg") center/cover no-repeat;
       filter: saturate(1.05) contrast(1.02);
     }
     .hero::after{
@@ -292,29 +293,7 @@
     }
 
     .smalllink{color: rgba(238,242,255,.72); text-decoration: underline}
-  
-/* --- Topbar phone + mobile fixes --- */
-.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
-.phone{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#eef2ff;text-decoration:none;white-space:nowrap}
-.phone:hover{background:rgba(255,255,255,.12)}
-@media (max-width: 520px){
-  .topbar .row{flex-wrap:wrap;gap:10px}
-  .topbar .brand{width:100%;justify-content:space-between}
-  .topbar .brand .title{font-size:13px;line-height:1.2}
-  .actions{width:100%;justify-content:space-between}
-  .actions .chip{display:none}
-  .phone{flex:1;justify-content:center;padding:9px 10px;font-size:14px}
-  .btn{padding:10px 12px;font-size:14px}
-}
-
-/* --- Простая модалка через :target для политики --- */
-.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:18px;z-index:9999}
-.modal:target{display:flex}
-.modal__overlay{position:absolute;inset:0;background:rgba(0,0,0,.6)}
-.modal__content{position:relative;max-width:760px;width:min(760px,100%);max-height:80vh;overflow:auto;background:#0b1220;border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:18px 18px 16px;color:#e7eaf6;box-shadow:0 20px 60px rgba(0,0,0,.55)}
-.modal__close{position:absolute;top:10px;right:12px;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;text-decoration:none;color:#e7eaf6;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
-.modal__close:hover{background:rgba(255,255,255,.12)}
-</style>
+  </style>
 
   <!-- Yandex.Metrika counter -->
   <script type="text/javascript">
@@ -337,8 +316,7 @@
     <div class="container">
       <div class="row">
         <div class="title">Ремонт квартир · Краснодар</div>
-        <div class="actions">
-          <a class="phone" href="tel:+79991842216" aria-label="Позвонить: +7 999 184 22 16">+7 999 184‑22‑16</a>
+        <div style="display:flex; gap:10px; align-items:center;">
           <div class="chip"><span class="dot"></span>Бесплатный замер по городу</div>
           <a class="btn" href="#form">Оставить заявку</a>
         </div>
@@ -456,7 +434,7 @@
 
       <div class="gallery">
         <div class="big">
-          <img src="./%D0%B3%D0%BE%D1%81%D1%82.jpg" alt="Референс современного интерьера — гостиная" loading="lazy">
+          <img src="./гост.jpg" alt="Референс современного интерьера — гостиная" loading="lazy">
         </div>
         <div class="stack">
           <div class="sm">
@@ -478,7 +456,6 @@
           <div>
             <h2>Получить консультацию</h2>
             <p class="sub">Оставьте заявку — мы свяжемся и подскажем следующий шаг.</p>
-            <p class="muted" style="margin:6px 0 0;">Телефон для связи: <a href="tel:+79991842216">+7 999 184‑22‑16</a></p>
           </div>
         </div>
 
@@ -549,13 +526,12 @@
           <div style="color:rgba(238,242,255,.68); line-height:1.55;">
             ИП Зотов Антон Петрович<br>
             ИНН: 641520371608<br>
-            ОГРНИП: 325645700132342<br>
-            Телефон: <a href="tel:+79991842216" style="color:rgba(238,242,255,.88); text-decoration:underline;">+7 999 184‑22‑16</a>
+            ОГРНИП: 325645700132342
           </div>
         </div>
         <div style="text-align:left;">
           <div style="font-weight:600; color:rgba(238,242,255,.88); margin-bottom:6px;">Документы</div>
-          <a class="smalllink" href="#privacy" class="smalllink" data-modal-open>Политика конфиденциальности</a>
+          <a class="smalllink" href="#" onclick="alert('Заглушка. Позже добавим страницу политики.'); return false;">Политика конфиденциальности</a>
         </div>
       </div>
     </div>
@@ -639,43 +615,5 @@
       }
     });
   </script>
-
-  <!-- Политика конфиденциальности (встроенная страница) -->
-  <div id="privacy" class="modal" aria-hidden="true">
-    <a class="modal__overlay" href="#" aria-label="Закрыть"></a>
-    <div class="modal__content" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
-      <a class="modal__close" href="#" aria-label="Закрыть">×</a>
-      <h2 id="privacyTitle" style="margin:0 0 10px;">Политика конфиденциальности</h2>
-      <div class="muted" style="margin-bottom:14px;">Кратко и по делу — чтобы модерация видела, кто собирает данные и зачем.</div>
-
-      <div style="display:grid; gap:12px; line-height:1.55;">
-        <div>
-          <b>1. Какие данные собираем</b><br>
-          Имя (если указано), номер телефона и выбранный вид работ из формы на сайте. Также могут собираться технические данные: IP‑адрес, cookies, параметры браузера и страницы (через Яндекс.Метрику).
-        </div>
-        <div>
-          <b>2. Зачем собираем</b><br>
-          Для связи с вами, консультации и расчёта стоимости ремонта, а также для улучшения работы сайта и рекламы.
-        </div>
-        <div>
-          <b>3. Кому передаём</b><br>
-          Заявка передаётся подрядчику, выполняющему ремонт в Краснодаре, чтобы он мог связаться с вами и подготовить предложение. Данные не продаются третьим лицам и не используются для иных целей без вашего согласия.
-        </div>
-        <div>
-          <b>4. Как защищаем</b><br>
-          Доступ к заявкам ограничен. Передача данных происходит по защищённому соединению (HTTPS).
-        </div>
-        <div>
-          <b>5. Срок хранения</b><br>
-          Данные хранятся столько, сколько нужно для обработки обращения и последующих коммуникаций, либо до вашего запроса на удаление.
-        </div>
-        <div>
-          <b>6. Ваши права</b><br>
-          Вы можете запросить уточнение, удаление или ограничение обработки данных — напишите нам по телефону: <a href="tel:+79991842216">+7 999 184‑22‑16</a>.
-        </div>
-      </div>
-    </div>
-  </div>
-
 </body>
 </html>
